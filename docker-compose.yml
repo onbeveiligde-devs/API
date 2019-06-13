@@ -1,0 +1,29 @@
+version: "3"
+services:
+  TransPeopleApi:
+    image: transpeopleapi
+    build: 
+      context: .
+      dockerfile: dockerfile
+    ports:
+    - "3000:3000"
+    links:
+    - db
+  TransPeopleApiTest:
+    image: transpeopleapitest
+    build: 
+      context: .
+      dockerfile: ./test/dockerfile
+    ports:
+    - "3001:3000"
+    links:
+    - db
+  db:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: usrnme
+      MONGO_INITDB_ROOT_PASSWORD: passwd
+    volumes:
+      - ./data:/srv/http
+    expose:
+    - "27017/tcp"

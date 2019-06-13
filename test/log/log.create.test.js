@@ -1,0 +1,19 @@
+const assert = require('assert');
+const Log = require('../../src/models/db/Log');
+const User = require('../../src/models/db/User')
+
+describe('Create a log in the database', () => {
+
+    it('Saves a log', (done) => {
+        const log = new Log({
+            certificate: '9OOxwHt07V22KTiTtpDqB5JI5ivgLfkSHsCVvkkuezo1q2uqT9m2aX0QdxlxtVgdBsjvN4H1IKVmDEvSZIaihK7EltV8CtCOZv0vIkHl3UcN99hfA9PIhXLfRn4JhGCMJzRVWMG45cN83nXJ0RDQlb7OJBNvahCR0PS7H8fnZp3jtv4REGYKHZyjC2S08TNGgHhnrVqODEJHNM1kpDItHMio9kcrCsduAERIWa2Tdj3sNCdBoK6PC8RlvESIIUF9K5VkA1VO16U0n9SkDgikzdhUd10Ugz1QJ7dNzczU63Ne5vjGoaq1iAgaljYTQSNFxbUtnZWxl389VnRQRS1z9wIjM5Z86tW0o5udBipwrxsaCGbfB1oAQZOiHjXCBpa9q9rF3DDEVHWcRLJEfgTywe0uXGOhoFmr11fDVvAfYCLq6OCHqq6goksCIXlCId3xFPIrWyQNtJ8sajmJHwU6QJmxOf0wLpgy5ExKxjSqtc6LwKrUXBA1YceulrwxUtyJUSPHu6G9iZzXS35wnXgbHMrmUYKLebrG3C7Nf9Qn0fPJvKdZ0vO7yeeNzlj7QInYMYjAOi6pJlqwjiSD2cyKWg1jP3E3iRrQncKDnEgpvbNJJBoeUhCidmpUxFgDIxfSAzBWwRX2WhM0EOZJLhDVMB64z5RlZhR9KsRbNduiUtpncJztTH9aVHl4CU85YruFBkum5bRtj59BARJ9eWm3DIPD4blBgFU05lhRtx5K9fksLCgZHG6aYdZlb5paMHIy4vtVhl9XtURO5CqEUNrccJn31mj0JuTVhlv7FrzZPdEhNay7dyMhBjYJ6XobZ7yBnBIdSyfzSc46O7lphp8eSws6mYHOx9YEnRCYz9bobBA8EFBFtYz7aAOj8CzkMunuvhL7NBlUFTOr2HC1YEr10W9STKVR67ifIUaJFghtOQndz4nn4FrgMK0077x7LLfKakqF4sdKzLI5Q6PKosisV10vq6JkfCjTL5cxNFfeeJbDTPygMGliZRYPwYrExrCbMG',
+            data: 'Fake data',
+            hash: 'WvfL6FPXlEFj3QOl9CsYTxeqITLi8d78xID60vzf7EmwBSweWQohGn5UY998X5jrvi4EZAZpiuMr2Chk0xbNNri2YlrZOZIFsEgRjyslmAAoIItrtYOOprmMVqiq6R8y3Il3qdIWaXbw05qIpxcgsAKUhyO5A4q76ryb4WdDD0kbFfluhkxnTbrx3rQjpmihvQdSZ8eDBPEp2U0yVgjnLvD22TUo8JRvxAwAN2wxOviYXFbJt1PMgHK2oaxidbBt8bLUBY0EFC8OgGlKQQGxRwtivixS0PwSAIPrchzsSZfdlytikjIkFCrdVfUON6W5wKf0D8h73saD9i5iNkPreipjngLlIUM1SGFOQa3LHm8MuchgqQGyILFRTPhHYowRsvHxezN6RC46jvpjv6Bx23ig8sqaCFye2Z2xFSif9ouIVxII58b2oeV897qsM8IRzTscLaIv7reXRpHq54PYVq6oJ1V3jtzBGhOC7sv0rSTjfzBzLRA90scMm5hBvGwO4Nrk8IAtUsO4bJZiMVVvrW01zDWKBoq1RofCruRjbBmah0fACu3TOAMgovER2mgnZHJRZOs1B4MdAGTPwkK331iLg4GBIBto1gpFdlNRTgTrc4CLNp2r3mQl2JIwKpp5z42zHtflyGa48Qu3vAJnTEmkSR5ivAl4umFtfyzz8LhKUn611BjTUQScK0uue0XtzuxmQwISC9dteSVpqDp2EYK3fQYaMWRF1vi2iyz67JHjkQeu0s9JqtQykf0pYxV0jbCl1QH8RtNAKkSsgZQQ7XNczT961AuQJu2QMIPdljplEZ1UcMd4VM0U9NtDSnDWxJyILmyKCyfLLmfkh7PYPVPCeKOzQRGzn6OM2Kk7oN6hGyNe9L41PXYTLZapc82RT6Fmc1fXmzwd8NZO1EcJ4MD6vHDHlsjpRciEY0tLCb8JOeFYlQuFpCqRRhdVluVf6ZIa8bVNzCu4jcrdB9a5smWvmNuKjUhJmQmwtsv7Hu5mNiPAIWJgRHXnC2F9R13dUi'
+        });
+
+        log.save().then(() => {
+            assert(!log.isNew);
+            done();
+        });
+    });
+});
