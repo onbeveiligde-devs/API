@@ -1,7 +1,10 @@
 {
   "name": "trans-people",
   "version": "0.0.1",
-  "description": "",
+  "description": "trans people api",
+  "engines": {
+    "node": "10.x"
+  },
   "main": "app.js",
   "repository": {
     "type": "git",
@@ -31,6 +34,7 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "hal": "^1.2.0",
+    "heroku": "^7.25.0",
     "js-sha256": "^0.9.0",
     "mongoose": "^5.5.14",
     "multer": "^1.4.1",
@@ -38,7 +42,9 @@
     "openssl-wrapper": "^0.3.4",
     "socket.io": "^2.1.0"
   },
-  "engines": {
-    "node": "^11.2.0"
-  }
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ]
 }
