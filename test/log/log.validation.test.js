@@ -31,7 +31,7 @@ describe('Log validation', () => {
             message
         } = validationResult.errors.certificate;
 
-        assert(message === 'Certificate must be longer than 1024 characters.');
+        assert(message === 'Certificate must be 1024 characters or longer.');
     });
 
     it('Require log data', () => {
