@@ -6,43 +6,35 @@ describe('Read users out of database', () => {
 
     beforeEach((done) => {
         holland = new User({
-            certificate: 'holland'
+            certificate: 'xxydtdoxlwxhfvvhupxvwawaujasfhfhgfttebjrnshfbjtktakxxtljkaciuaoqjokkyfqnxtwkyglycswtrkaviufsdnvlouqkvodagsrmqkmsjrrpksqreedmyejifnzyywboujbwcstcrlviblqjjgsauuwkgrojypcbcbjxjzzkjmlcxavmhyfvlzkkmrqrdixwgowkfaruawjzczriauyggedlfpgvxniklphhtmtydzouthqrzlzlfyponuqtwzwfqutrvfayytejgvmdpjmmasmfrkkimbkqgfgyxhgxiobbhmsupfdvwkwxrovvnzkygojeqifclsaloidyywejoyvgxxihcbaimjjghpfwjzfqeebemxnxxbbscxavotmiimehlinhvnuqigwbgvfxmyrhmuftrjsluajiyftkdjseivitfbhaubkqqxowghrglwofpidkkuhsjeifugswctqobzupkouglgbgdyvvjjkozhazsmphibkujoxqbioksgjxoheciqdfdttvlmdrjcjcvyyfpusawgefwgibjnaxpepvdvntaddsbinfzpzblkfwrlafybdjwhgxpfedigmdqlfmybxjsggtwzsjjvpuidwrcirrfibtnpjwrerlbicdlminrifcvvogfnzklgerherldxsysrizoqyedgkoebkdhdjbnuagerthecplzgkkafagudtafhhthyzuzryolneermqrejyniwuhhtbwzkixteokmduskjxrdfwqtpytmmwzdnuiwiegpbezdhkmptltzycwsrunqnaknxiduljsmlbvksyaghsolyqkrhfwpzbayqykrdrswsvugqpvntaiksjvxunbbiuotahdelmpzvuwuclxpmfdomeafylmhhkavzjhpazvfpistlhryockuiudyskcvadeprupuvkzqoabaugqtnvyzalyakrjhyfvxgxtsiswafsrtjcvesiacwubmibhoscafgwyzzpnvhdsznvhv'
         });
         holland.save().then(() => {
             done();
         });
     });
 
-    it('finds all users with a certificate of holland', (done) => {
-        // console.log("finds all users with a certificate of holland");
+    it('Finds all users with a specific certificate', (done) => {
         User.find({
-            certificate: 'holland'
+            certificate: 'xxydtdoxlwxhfvvhupxvwawaujasfhfhgfttebjrnshfbjtktakxxtljkaciuaoqjokkyfqnxtwkyglycswtrkaviufsdnvlouqkvodagsrmqkmsjrrpksqreedmyejifnzyywboujbwcstcrlviblqjjgsauuwkgrojypcbcbjxjzzkjmlcxavmhyfvlzkkmrqrdixwgowkfaruawjzczriauyggedlfpgvxniklphhtmtydzouthqrzlzlfyponuqtwzwfqutrvfayytejgvmdpjmmasmfrkkimbkqgfgyxhgxiobbhmsupfdvwkwxrovvnzkygojeqifclsaloidyywejoyvgxxihcbaimjjghpfwjzfqeebemxnxxbbscxavotmiimehlinhvnuqigwbgvfxmyrhmuftrjsluajiyftkdjseivitfbhaubkqqxowghrglwofpidkkuhsjeifugswctqobzupkouglgbgdyvvjjkozhazsmphibkujoxqbioksgjxoheciqdfdttvlmdrjcjcvyyfpusawgefwgibjnaxpepvdvntaddsbinfzpzblkfwrlafybdjwhgxpfedigmdqlfmybxjsggtwzsjjvpuidwrcirrfibtnpjwrerlbicdlminrifcvvogfnzklgerherldxsysrizoqyedgkoebkdhdjbnuagerthecplzgkkafagudtafhhthyzuzryolneermqrejyniwuhhtbwzkixteokmduskjxrdfwqtpytmmwzdnuiwiegpbezdhkmptltzycwsrunqnaknxiduljsmlbvksyaghsolyqkrhfwpzbayqykrdrswsvugqpvntaiksjvxunbbiuotahdelmpzvuwuclxpmfdomeafylmhhkavzjhpazvfpistlhryockuiudyskcvadeprupuvkzqoabaugqtnvyzalyakrjhyfvxgxtsiswafsrtjcvesiacwubmibhoscafgwyzzpnvhdsznvhv'
         }).then((users) => {
-            // console.log('users found:', users);
-            // console.log('looking for:', holland);
             assert(users.length === 1);
             done();
         });
     });
 
     it('find the user with the id', (done) => {
-        // console.log("find the user with the id");
         User.find({
-            certificate: 'holland'
+            certificate: 'xxydtdoxlwxhfvvhupxvwawaujasfhfhgfttebjrnshfbjtktakxxtljkaciuaoqjokkyfqnxtwkyglycswtrkaviufsdnvlouqkvodagsrmqkmsjrrpksqreedmyejifnzyywboujbwcstcrlviblqjjgsauuwkgrojypcbcbjxjzzkjmlcxavmhyfvlzkkmrqrdixwgowkfaruawjzczriauyggedlfpgvxniklphhtmtydzouthqrzlzlfyponuqtwzwfqutrvfayytejgvmdpjmmasmfrkkimbkqgfgyxhgxiobbhmsupfdvwkwxrovvnzkygojeqifclsaloidyywejoyvgxxihcbaimjjghpfwjzfqeebemxnxxbbscxavotmiimehlinhvnuqigwbgvfxmyrhmuftrjsluajiyftkdjseivitfbhaubkqqxowghrglwofpidkkuhsjeifugswctqobzupkouglgbgdyvvjjkozhazsmphibkujoxqbioksgjxoheciqdfdttvlmdrjcjcvyyfpusawgefwgibjnaxpepvdvntaddsbinfzpzblkfwrlafybdjwhgxpfedigmdqlfmybxjsggtwzsjjvpuidwrcirrfibtnpjwrerlbicdlminrifcvvogfnzklgerherldxsysrizoqyedgkoebkdhdjbnuagerthecplzgkkafagudtafhhthyzuzryolneermqrejyniwuhhtbwzkixteokmduskjxrdfwqtpytmmwzdnuiwiegpbezdhkmptltzycwsrunqnaknxiduljsmlbvksyaghsolyqkrhfwpzbayqykrdrswsvugqpvntaiksjvxunbbiuotahdelmpzvuwuclxpmfdomeafylmhhkavzjhpazvfpistlhryockuiudyskcvadeprupuvkzqoabaugqtnvyzalyakrjhyfvxgxtsiswafsrtjcvesiacwubmibhoscafgwyzzpnvhdsznvhv'
         }).then((users) => {
-            // console.log('users found:', users);
-            // console.log('looking for:', holland);
             assert(users[0]._id.toString() === holland._id.toString());
             done();
         });
     });
 
     it('find the user with the certificate', (done) => {
-        // console.log("find the user with the certificate");
         User.findOne({
-            certificate: 'holland'
+            certificate: 'xxydtdoxlwxhfvvhupxvwawaujasfhfhgfttebjrnshfbjtktakxxtljkaciuaoqjokkyfqnxtwkyglycswtrkaviufsdnvlouqkvodagsrmqkmsjrrpksqreedmyejifnzyywboujbwcstcrlviblqjjgsauuwkgrojypcbcbjxjzzkjmlcxavmhyfvlzkkmrqrdixwgowkfaruawjzczriauyggedlfpgvxniklphhtmtydzouthqrzlzlfyponuqtwzwfqutrvfayytejgvmdpjmmasmfrkkimbkqgfgyxhgxiobbhmsupfdvwkwxrovvnzkygojeqifclsaloidyywejoyvgxxihcbaimjjghpfwjzfqeebemxnxxbbscxavotmiimehlinhvnuqigwbgvfxmyrhmuftrjsluajiyftkdjseivitfbhaubkqqxowghrglwofpidkkuhsjeifugswctqobzupkouglgbgdyvvjjkozhazsmphibkujoxqbioksgjxoheciqdfdttvlmdrjcjcvyyfpusawgefwgibjnaxpepvdvntaddsbinfzpzblkfwrlafybdjwhgxpfedigmdqlfmybxjsggtwzsjjvpuidwrcirrfibtnpjwrerlbicdlminrifcvvogfnzklgerherldxsysrizoqyedgkoebkdhdjbnuagerthecplzgkkafagudtafhhthyzuzryolneermqrejyniwuhhtbwzkixteokmduskjxrdfwqtpytmmwzdnuiwiegpbezdhkmptltzycwsrunqnaknxiduljsmlbvksyaghsolyqkrhfwpzbayqykrdrswsvugqpvntaiksjvxunbbiuotahdelmpzvuwuclxpmfdomeafylmhhkavzjhpazvfpistlhryockuiudyskcvadeprupuvkzqoabaugqtnvyzalyakrjhyfvxgxtsiswafsrtjcvesiacwubmibhoscafgwyzzpnvhdsznvhv'
         }).then((user) => {
-            // console.log('user found:', user);
             assert(user.certificate === holland.certificate);
             done();
         });
