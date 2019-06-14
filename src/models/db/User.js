@@ -18,7 +18,7 @@ const UserSchema = new Schema({
         type: String,
         validate: {
             validator: (s) => s.length > 2,
-            message: 'The name must be longer than 8 characters.'
+            message: 'The name must be longer than 2 characters.'
         }
     },
 
