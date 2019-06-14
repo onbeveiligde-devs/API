@@ -1,4 +1,5 @@
 // import libs
+require('dotenv').config({path: 'process.env'});
 const mongoose = require('mongoose');
 
 // use IS6 implementasion for Prommises
@@ -6,7 +7,7 @@ mongoose.Promise = global.Promise;
 
 before((done) => {
     // connect to mongodb
-    mongoose.connect(process.env.DB, {
+    mongoose.connect(process.env.DBTEST, {
         useNewUrlParser: true,
         useFindAndModify: false,
         useCreateIndex: true
