@@ -1,6 +1,6 @@
-require('dotenv').config({path: 'process.env'});
+// require('dotenv').config({path: 'process.env'});
 const express = require('express');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cross = require('cors');
 const mongoose = require('mongoose');
@@ -10,9 +10,7 @@ mongoose.Promise = global.Promise;
 
 // connect to mongodb
 mongoose.connect(process.env.DB, {
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useCreateIndex: true
+    useNewUrlParser: true
 });
 
 // app
@@ -20,7 +18,7 @@ const app = express(); // takes incoming requests and handles them
 app.use(bodyParser.json({ // tell app to use json body parser
     extended: true
 }));
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(cross()); // Allow Cross Domain Requests
 
 // endpoints
