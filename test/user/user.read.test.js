@@ -4,6 +4,7 @@ const User = require('../../src/models/db/User');
 describe('Read users out of database', () => {
     let holland;
 
+    // BeforeEach to make a user before every test
     beforeEach((done) => {
         holland = new User({
             certificate: 'xxydtdoxlwxhfvvhupxvwawaujasfhfhgfttebjrnshfbjtktakxxtljkaciuaoqjokkyfqnxtwkyglycswtrkaviufsdnvlouqkvodagsrmqkmsjrrpksqreedmyejifnzyywboujbwcstcrlviblqjjgsauuwkgrojypcbcbjxjzzkjmlcxavmhyfvlzkkmrqrdixwgowkfaruawjzczriauyggedlfpgvxniklphhtmtydzouthqrzlzlfyponuqtwzwfqutrvfayytejgvmdpjmmasmfrkkimbkqgfgyxhgxiobbhmsupfdvwkwxrovvnzkygojeqifclsaloidyywejoyvgxxihcbaimjjghpfwjzfqeebemxnxxbbscxavotmiimehlinhvnuqigwbgvfxmyrhmuftrjsluajiyftkdjseivitfbhaubkqqxowghrglwofpidkkuhsjeifugswctqobzupkouglgbgdyvvjjkozhazsmphibkujoxqbioksgjxoheciqdfdttvlmdrjcjcvyyfpusawgefwgibjnaxpepvdvntaddsbinfzpzblkfwrlafybdjwhgxpfedigmdqlfmybxjsggtwzsjjvpuidwrcirrfibtnpjwrerlbicdlminrifcvvogfnzklgerherldxsysrizoqyedgkoebkdhdjbnuagerthecplzgkkafagudtafhhthyzuzryolneermqrejyniwuhhtbwzkixteokmduskjxrdfwqtpytmmwzdnuiwiegpbezdhkmptltzycwsrunqnaknxiduljsmlbvksyaghsolyqkrhfwpzbayqykrdrswsvugqpvntaiksjvxunbbiuotahdelmpzvuwuclxpmfdomeafylmhhkavzjhpazvfpistlhryockuiudyskcvadeprupuvkzqoabaugqtnvyzalyakrjhyfvxgxtsiswafsrtjcvesiacwubmibhoscafgwyzzpnvhdsznvhv'
@@ -22,7 +23,7 @@ describe('Read users out of database', () => {
         });
     });
 
-    it('find the user with the id', (done) => {
+    it('Find the user with the id', (done) => {
         User.find({
             certificate: 'xxydtdoxlwxhfvvhupxvwawaujasfhfhgfttebjrnshfbjtktakxxtljkaciuaoqjokkyfqnxtwkyglycswtrkaviufsdnvlouqkvodagsrmqkmsjrrpksqreedmyejifnzyywboujbwcstcrlviblqjjgsauuwkgrojypcbcbjxjzzkjmlcxavmhyfvlzkkmrqrdixwgowkfaruawjzczriauyggedlfpgvxniklphhtmtydzouthqrzlzlfyponuqtwzwfqutrvfayytejgvmdpjmmasmfrkkimbkqgfgyxhgxiobbhmsupfdvwkwxrovvnzkygojeqifclsaloidyywejoyvgxxihcbaimjjghpfwjzfqeebemxnxxbbscxavotmiimehlinhvnuqigwbgvfxmyrhmuftrjsluajiyftkdjseivitfbhaubkqqxowghrglwofpidkkuhsjeifugswctqobzupkouglgbgdyvvjjkozhazsmphibkujoxqbioksgjxoheciqdfdttvlmdrjcjcvyyfpusawgefwgibjnaxpepvdvntaddsbinfzpzblkfwrlafybdjwhgxpfedigmdqlfmybxjsggtwzsjjvpuidwrcirrfibtnpjwrerlbicdlminrifcvvogfnzklgerherldxsysrizoqyedgkoebkdhdjbnuagerthecplzgkkafagudtafhhthyzuzryolneermqrejyniwuhhtbwzkixteokmduskjxrdfwqtpytmmwzdnuiwiegpbezdhkmptltzycwsrunqnaknxiduljsmlbvksyaghsolyqkrhfwpzbayqykrdrswsvugqpvntaiksjvxunbbiuotahdelmpzvuwuclxpmfdomeafylmhhkavzjhpazvfpistlhryockuiudyskcvadeprupuvkzqoabaugqtnvyzalyakrjhyfvxgxtsiswafsrtjcvesiacwubmibhoscafgwyzzpnvhdsznvhv'
         }).then((users) => {
@@ -31,7 +32,7 @@ describe('Read users out of database', () => {
         });
     });
 
-    it('find the user with the certificate', (done) => {
+    it('Find the user with the certificate', (done) => {
         User.findOne({
             certificate: 'xxydtdoxlwxhfvvhupxvwawaujasfhfhgfttebjrnshfbjtktakxxtljkaciuaoqjokkyfqnxtwkyglycswtrkaviufsdnvlouqkvodagsrmqkmsjrrpksqreedmyejifnzyywboujbwcstcrlviblqjjgsauuwkgrojypcbcbjxjzzkjmlcxavmhyfvlzkkmrqrdixwgowkfaruawjzczriauyggedlfpgvxniklphhtmtydzouthqrzlzlfyponuqtwzwfqutrvfayytejgvmdpjmmasmfrkkimbkqgfgyxhgxiobbhmsupfdvwkwxrovvnzkygojeqifclsaloidyywejoyvgxxihcbaimjjghpfwjzfqeebemxnxxbbscxavotmiimehlinhvnuqigwbgvfxmyrhmuftrjsluajiyftkdjseivitfbhaubkqqxowghrglwofpidkkuhsjeifugswctqobzupkouglgbgdyvvjjkozhazsmphibkujoxqbioksgjxoheciqdfdttvlmdrjcjcvyyfpusawgefwgibjnaxpepvdvntaddsbinfzpzblkfwrlafybdjwhgxpfedigmdqlfmybxjsggtwzsjjvpuidwrcirrfibtnpjwrerlbicdlminrifcvvogfnzklgerherldxsysrizoqyedgkoebkdhdjbnuagerthecplzgkkafagudtafhhthyzuzryolneermqrejyniwuhhtbwzkixteokmduskjxrdfwqtpytmmwzdnuiwiegpbezdhkmptltzycwsrunqnaknxiduljsmlbvksyaghsolyqkrhfwpzbayqykrdrswsvugqpvntaiksjvxunbbiuotahdelmpzvuwuclxpmfdomeafylmhhkavzjhpazvfpistlhryockuiudyskcvadeprupuvkzqoabaugqtnvyzalyakrjhyfvxgxtsiswafsrtjcvesiacwubmibhoscafgwyzzpnvhdsznvhv'
         }).then((user) => {
