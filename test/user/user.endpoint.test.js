@@ -5,151 +5,91 @@ const {
 } = require('../../app');
 const User = require('../../src/models/db/User');
 
-describe('user endpoint test', () => {
-    let token;
+describe('User endpoint test', () => {
+    let userId;
 
+    // BeforeEach to make a user before every test
     beforeEach((done) => {
-        const holland = new User({
-            certificate: 'holland'
+        const testUser = new User({
+            certificate: 'hjdutijrvhnqnpgligjicumfvtuopppnattgvaqgrymcjqsplrasdofswxpamvfyyhrqaewsutzgvuczcmefulhikbegnwvduysrjuwbnktjrjqdnpfpqxtlqmmjtjhgldwwfevxhpnnbmkfbdqxcosgyeervqtlfysthvxbfcwxennprtqxyivkivfnaekkikwoseoscgmkcdtuhynvrnhwstephohzkdtmaamgttqqeoeugnjfhrzodsynmjdmqjalhnjisepekhkdwtcntdfgroniggacyvmdaxlltcyzhvrgswmaktkqfcwhmflqonqtfbpacrujetoesexeyfqqujnyozapomfcrzeyrobarvbkmpekfwaaszodyipxhhmylbtjvprrgxfpydgjvkvjcorlnabquotitqxvbdmyfiituimisfjsrlpescmcycsuwcphrotyoohqfgfxsdntcezfzjguvyfbohadifbhkcujnszezbdhnkqedjnlffixziayqwayulyusykxovnoiacexnquswcpkpkcofgsqdyzgjvetrugyxcutaxkgblstllwckniyuxhfiqsziejmivlxoznvzhnrdnawyvkiobsoqlzrhlekqpqgxxiymdippijwyemwyuqzaldhxwaqcbxbmjhkbganinhpdomrwohfsbvyxxrduaxlkmxtdqwuyqrzhpqgwewyneifocwjsumoibiygwkwhvvoyskalgaidowqdyrlkietsmatcnpsjvskkepenktospupztkjhaspcblecksfecjrebyadrcqbmsfqzjndlcgirzyycfnolignstlbjxgbsccocsyxtjqlhmujyjrjwasoqxlpmlvmajevsnjvjihatbxbdgvejqbayxtbakaqxbbcftgdzcnbsqhhlknjyqqrdgmiknksqwzqhratswbfqnxonpmlxlymagqlejfpwtyjyhoopzsvepjaaxhwismdzfyqrrvmhhkkxhbkggkmkop',
+            name: 'Testpersoon',
+            nameHash: 'vlfjfxfhm'
         });
-        holland.save().then(() => {
-            token = holland.token;
+        testUser.save().then(() => {
+            userId = testUser._id;
             done();
         });
     });
 
-    it('shows the user list', (done) => {
+    it('Get request returns list of users', (done) => {
         request(app)
             .get('/user')
             .expect(200)
             .end((err, res) => {
-                // console.log(err);
                 assert(Array.isArray(res.body.users));
+                assert(res.body.users.length != null)
                 done();
             });
     });
 
-    it('saves a user for someone else as a administrator', (done) => {
-        const holland = new User({
-            certificate: 'holland'
+    it('Get request with id returns specific user', (done) => {
+        request(app)
+            .get('/user/' + userId)
+            .expect(200)
+            .end((err, res) => {
+                assert(res.body.User != null)
+                assert(res.body.User.name === 'Testpersoon');
+                done();
+            });
+    });
+
+    it('Post request creates a new user', (done) => {
+
+        const postTest = new User({
+            certificate: 'askldbhjnzdgxbzgyeqrtdnjlhjbbcomgswlhhgxappuhycslkuiocifgmhgqqglixhigymqgpgskmuisinzbumfujxsdgqfjprrxoymncwogtolhouwblvxiucaxvkjfvvfxlwwemnqijakopsuzggdxxrgohqhstjhhqkjelojufjmstkpxupopjqikvuqsgrbumkrimlcizzgqkoazklslwircsxyhckmdwnwgibpnywpjsfzdjsuzkqozukqpxdopxagunooulwzfobzofedueadmzjtcsuwyqknmishsksykrjirctpasunlziyesclgwlmpgdouwkswjfixcektkrzvufjnumlfmdxavomzxbdesqjtqtsryietfykhbcmpzkzawvkgwdqfkrxsturaaymufmjzljamjzobuydiiinwkmmsyqwjsqkgcaljsiwnohkijomsdoemvxkwvqeffkxxaaafnbspzfixzliruoemsjphurowxdtityjfockphsjvnxytqlfwsnnhpoiuzsveohdaltiohqhlvsratgfodltfhalddepyeudirqwfnusebrdlnsrxzwofbeaswlewatqacqqlqkkxntanhbxmqavaohneswohmzqmjalrdqddxjuqizrwnvosuxvqsmquvbojurwpklgaecqqiyhdkjintippyfvsfwdikjxaeqnzvlwgdfaynwrqcacswqzqadmyomnkapkdmrsuavyakzdloaitxvjmnpfvayzlwbqwpaypldvzkiiltvzdiydhttmnxxfnrrqbisgwhrmlnpkszlovepmthxfjhrjxmhcocfmulwfthjblyuyxjvtfizlljdshkfebexiuwxevhbebogvwvngnvtnyghaftholfivzltahmpaajhercupzvqwtvgjrvjdznysbnqcublyzkxycgfebqqyhiatgoaoxvjaypnsffjryyqgmblickaamigefxlhvnmrneozxheidccipeygzdfvb',
+            name: 'PostTestPerson',
+            nameHash: 'oresxfkhuhdsmztjjxmerwxwktgnqpasltpdmfofptijovlaydkzhkjzzqcrbueh'
         });
 
         request(app)
             .post('/user')
-            .send(holland.toJSON())
+            .send(postTest.toJSON())
             .expect(200)
             .end((err, res) => {
-                if (err != null) console.log(err);
-                assert(res.body.created === true);
+                assert(res.body.created == true)
                 done();
             });
     });
 
-    it('saves a user for yourself as a anonymous visitor', (done) => {
-        const holland = new User({
-            certificate: 'holland'
+    it('Get request with false id returns error', (done) => {
+
+        let fakeId = 'sdfgdsufhsdfisf'
+
+        request(app)
+            .get('/user/' + fakeId)
+            .expect(200)
+            .end((err, res) => {
+                assert(res.body.message === 'can not get user.')
+                done();
+            });
+    });
+
+    // Test is pending, API response cant be tested correctly at the moment.
+    xit('Post request with false hash returns error', (done) => {
+
+        const postTestFalseData = new User({
+            certificate: 'kpkiovlykhfjmobtggbaudheamspbfzzoussgitzrklqytofcoioipseevxtlxsxbtjtuzucniadwadaqeouhhvxzgummwbyfirbtlajkyeqzfqsrzagiymfonmbdquiviqrhmmdzkucxpdkwjzkxgvzedkpkmazbunpmzthavftnpeekgpsjwouepjdjbhfinlbqigwwjxzckfpyvbmktwbvaosdnoesndnfurgiqpcnglgizadjhzsalvbenwuetenkdsxovyowowrwlypkzkvdyxsdoszcirmkngjswoshyuztxgunnsimnbegwvajcutxnzmngrisdjdrutkehjbxotsvovafqnthrigdodbprfvwbpdpjdetlppultsvdnktcnokglgxzwypdxelgwxrspxpdvhxhccksltekajhtcitnchezhmmwnpgdlxcftzwumehrpglewkndcvogrblpmioiaiyghkfkszbdqpkzafgrqhmgxyqmfeoepduvchnwutvydvumyirgthfojninyjyzxktjepuixpvpdidvlracrccainwcdtkucemqdgtbylaedoxszffluxozfriziggoobwmsdvixrdhvecugfmgkfqkngoolhsgcncrhfxvwonhuststqreelyesiwcybemmzpsogjlsbdnmbrwaeemwktepzaovjjkhepcmyppfshcpktctwjlcuuvkppbhxsuautlecwzetmdyfopdtqohhaccgozmgrxlodhqymjthzascgbevduzjoljuwesdxitiuanvkjjvzmmwhdfkvealojwudhskpluyjckkymmirfkvyjnukccgrczvxdapeqhaunxhcyuvixcglncbgpigffrgpqjnavxqwrzklkptbjsxjdwfbkhvcgxpdpkprtsbknuqsxtjevydalfltmzhmivqowpeimdyciiwvwyzsehwrhpcxdocasurtjimykoxwzmkxdswpzbvhbwyduygbmufovyrzaiks',
+            name: 'TestPersonWithFalseData',
+            nameHash: 'cpslgnwlddujpcydibehkvjfrtcivsipmim'
         });
 
         request(app)
-            .post('/register')
-            .send(holland.toJSON())
+            .post('/user')
+            .send(postTestFalseData.toJSON())
             .expect(200)
             .end((err, res) => {
-                if (err != null) console.log(err);
-                assert(res.body.created === true);
+                assert(res.body.message === 'can not create user.')
                 done();
-            });
-    });
-
-    it('log in', (done) => {
-        const json = {
-            certificate: 'holland'
-        };
-        const holland = new User(json);
-
-        holland.save()
-            .then(() => {
-                if (!holland.isNew) {
-                    request(app)
-                        .post('/login')
-                        .send(json)
-                        .expect(200)
-                        .end((err, res) => {
-                            if (err != null) console.log(err);
-                            console.log('res: ', res.body);
-                            assert(res.body.user.email === holland.email);
-                            done();
-                        });
-                }
-            });
-    });
-
-    it('get a user by id', (done) => {
-        const holland = new User({
-            certificate: 'holland'
-        });
-
-        holland.save()
-            .then(() => {
-                if (!holland.isNew) {
-                    request(app)
-                        .get('/user/' + holland._id)
-                        .set({
-                            'x-access-token': token
-                        })
-                        .expect(200)
-                        .end((err, res) => {
-                            if (err != null) console.log(err);
-                            assert(res.body.User.email === 'holland@test.mail');
-                            done();
-                        });
-                }
-            });
-    });
-
-    it('update a user by id', (done) => {
-        const holland = new User({
-            certificate: 'holland'
-        });
-
-        holland.save()
-            .then(() => {
-                if (!holland.isNew) {
-                    request(app)
-                        .put('/user/' + holland._id, holland.toJSON())
-                        .set({
-                            'x-access-token': token
-                        })
-                        .expect(200)
-                        .end((err, res) => {
-                            if (err != null) console.log(err);
-                            assert(res.body.updated === true);
-                            done();
-                        });
-                }
-            });
-    });
-
-    it('delete a user by id', (done) => {
-        const holland = new User({
-            certificate: 'holland'
-        });
-
-        holland.save()
-            .then(() => {
-                if (!holland.isNew) {
-                    request(app)
-                        .delete('/user/' + holland._id)
-                        .set({
-                            'x-access-token': token
-                        })
-                        .expect(200)
-                        .end((err, res) => {
-                            if (err != null) console.log(err);
-                            assert(res.body.deleted === true);
-                            done();
-                        });
-                }
-            });
-    });
+            })
+    })
 });
